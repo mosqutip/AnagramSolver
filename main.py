@@ -1,14 +1,7 @@
 # user input letters
-    # return exact matches
     # wildcards?
     # remove one letter, return matches?
         # permutations?
-
-# traversal
-    # if letter exists, follow
-    # if wildcard... difficult. wildcard could appear at any spot, including duplicate of letter that exists // TODO
-    # if out of letters and end of word, return set
-    # else, return false (insert? probably no)
 
 # permutations / reduced letters
     # TODO
