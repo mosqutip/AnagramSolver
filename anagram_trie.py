@@ -32,17 +32,28 @@ class AnagramTrie:
 
         return word in node.words
 
-    def get_anagrams(self, word: str) -> [str]:
-        node = self.root
-        alphabetized_word = ''.join(sorted(word)).strip()
+    def get_anagrams(self, word: str, node: AnagramTrieNode = None) -> [str]:
+        if not node:
+            node = self.root
 
-        for letter in alphabetized_word:
+        for letter in word:
             if letter in node.children:
                 node = node.children[letter]
+            elif letter == '*':
+                return self.get_anagrams_with_wildcard(word, node)
             else:
                 return []
 
         return list(node.words)
+
+    def get_anagrams_with_wildcard(self, word: str, node: AnagramTrieNode) -> [str]:
+        words = []
+        for letter in node.children:
+            test_word = word
+            test_word = test_word.replace('*', letter, 1)
+            words.extend(self.get_anagrams(test_word, node))
+
+        return words
 
     def count_words(self, node: AnagramTrieNode = None) -> int:
         if not node:

@@ -1,8 +1,3 @@
-# user input letters
-    # wildcards?
-    # remove one letter, return matches?
-        # permutations?
-
 # permutations / reduced letters
     # TODO
 
@@ -24,7 +19,7 @@ class AnagramSolver:
 
     def parse_intput_dictionary(self) -> None:
         if not self.corpus:
-            returnx
+            return
 
         self.dictionary = AnagramTrie()
         for word in self.corpus:
@@ -38,7 +33,8 @@ class AnagramSolver:
         return input_anagram
 
     def print_anagrams(self, input_anagram: str) -> [str]:
-        print(f'For input: {input_anagram}, found the following anagrams: {", ".join(self.dictionary.get_anagrams(input_anagram))}')
+        parsed_anagram = ''.join(sorted(input_anagram)).strip()
+        print(f'For input: {input_anagram}, found the following anagrams: {", ".join(self.dictionary.get_anagrams(parsed_anagram))}')
 
 def main():
     anagram_solver = AnagramSolver()
